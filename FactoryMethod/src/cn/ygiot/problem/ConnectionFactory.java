@@ -1,4 +1,4 @@
-package cn.ygiot.simplefactory3;
+package cn.ygiot.problem;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -11,8 +11,10 @@ public class ConnectionFactory {
     }
     public static final String MYSQL = "com.mysql.jdbc.Driver";
     public static final String ORACLE = "oracle.jdbc.driver.OracleDriver";
-    private static final String MYSQL_URL = "jdbc:mysql://localhost:3306/javademo";
+    public static final String SQLSERVER = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
+    private static final String MYSQL_URL = "jdbc:mysql://localhost:3306/music";
     private static final String ORACLE_URL = "jdbc:oracle:thin:@127.0.0.1:1521:simlink";
+    private static final String SQLSERVER_URL = "jdbc:sqlserver://localhost:1433";
     private static final String USER_NAME = "root";
     private static final String PASSWORD = "root";
     public static Connection getConnection(String database){
@@ -25,6 +27,9 @@ public class ConnectionFactory {
                     break;
                 case ORACLE:
                     conn = DriverManager.getConnection(ORACLE_URL, USER_NAME, PASSWORD);//获取连接
+                    break;
+                case SQLSERVER:
+                    conn = DriverManager.getConnection(SQLSERVER_URL, USER_NAME, PASSWORD);//获取连接
                     break;
             }
             return conn;
